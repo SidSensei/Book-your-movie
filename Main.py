@@ -26,25 +26,25 @@ class cinema():
         
 
         row_num = int(input())
-        row.append(row_num)
+
         print('\n')
 
         print('Enter column number')
 
         col_num = int(input())
-        column.append(col_num)
+
         print('\n')
 
         r1 = x//2
 
-        seat = int(str(row_num)+str(col_num))
+        
+        seat = ((row_num),(col_num))
 
         collection = 0
         
 
         if seat not in booked_seats:
 
-            booked_seats.append(seat)
 
             if (x*y) <= 60:
                 print('Price is 10$ per ticket')
@@ -54,15 +54,10 @@ class cinema():
             else:
                 if row_num > (r1):
                     print('Price is 8$ per ticket')
-                    price='8$'
-                    collection+=8
 
                 else:
                     print('Price is 10$ per ticket')
-                    price='10$'
-                    collection+=10
-                    
-            total_collection.append(collection)
+            
 
             print('\n')        
 
@@ -74,9 +69,20 @@ class cinema():
             print('\n')
             
             details = {'Name':' ','Age':' ','Gender':' ','Ticket price':' ','Phone number':' '}
-            customer_details.append(details)
 
             if ans == ('y'):
+                if row_num > (r1):
+                    price='8$'
+                    collection+=8
+
+                else:
+                    price='10$'
+                    collection+=10
+                
+                total_collection.append(collection)
+                row.append(row_num)
+                column.append(col_num)
+                booked_seats.append(seat)
                 print('Enter you Name')
                 details['Name']= input()
                 print('Enter you Age')
@@ -88,6 +94,7 @@ class cinema():
                 details['Ticket price']= price
                 print('\n')
                 print('Congratulaions, your seat is booked')
+                customer_details.append(details)
             else:
                 pass
         else:
@@ -95,7 +102,7 @@ class cinema():
             
             
             
-    def seat_layout(buy_a_ticket):
+    def seat_layout(self):
         
         for i in range(0,c):
             if i==0:
@@ -105,17 +112,14 @@ class cinema():
 
         for i in range(1,r):
             print('\n',i,end=' ')
-
-            if i in row:
-                for j in range(1,c):
-                    if j in column:
-                        print('B',end=' ')
+            for j in range(1,c):
+                baithak = 'S'
+                for k in booked_seats:
+                    if (i==k[0] and j==k[1]):
+                        baithak = 'B'
                     else:
-                        print('S', end = ' ')
-
-            else:
-                for j in range(y):
-                    print('S', end = ' ')
+                        pass
+                print(baithak, end = ' ')
         
         print('\n')
         
